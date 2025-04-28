@@ -58,17 +58,31 @@
   }
   
   
-  .login-btn {
+  .login-btn, .logOut-btn {
     background-color: #94d2bd;
     border: none;
+    outline: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
     color: #001219;
+    transition: background-color 0.3s, transform 0.2s;
   }
   
   .login-btn:hover {
     background-color: #e9d8a6;
   }
   
+  .logOut-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.logOut-btn:hover {
+    background-color: #d32f2f;
+}
+
+.logOut-btn:focus {
+    box-shadow: 0 0 0 2px #f44336;
+}

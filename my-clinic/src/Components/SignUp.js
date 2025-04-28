@@ -63,7 +63,7 @@ export default function SignUp() {
 
             const data = response.data;
 
-            localStorage.setItem("token", JSON.stringify(data.token));
+            localStorage.setItem("myToken", JSON.stringify(data.token));
 
             const signedUpUser = {
                 UserId: data.UserId,
@@ -76,7 +76,7 @@ export default function SignUp() {
                 isActive: data.isActive
             };
 
-            localStorage.setItem("signedUser", JSON.stringify(signedUpUser));
+            localStorage.setItem("myUser", JSON.stringify(signedUpUser));
 
             navigate("/");
             
