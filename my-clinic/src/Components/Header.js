@@ -46,14 +46,13 @@ function Header() {
             };
         };
     };
-    console.log(token)
 
     return (
         <header className="clinic-header">
             <div className="clinic-logo">🏥 MyClinic</div>
             <nav className="clinic-nav">
                 <NavLink to="/appointments">Appointments</NavLink>
-                {isAdmin && <NavLink to="/dashboard">Dashboard</NavLink>}
+                {isAdmin && <NavLink className='dashboard-link' to="/">Dashboard</NavLink>}
                 <NavLink to="/account">Account</NavLink>
 
                 {!token ? (

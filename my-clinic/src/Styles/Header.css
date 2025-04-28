@@ -51,7 +51,6 @@
     color: #94d2bd;
   }
   
-  /* ACTIVE link styling */
   .clinic-nav a.active {
     color: #e9d8a6;
     border-bottom: 2px solid #e9d8a6;
@@ -86,3 +85,22 @@
 .logOut-btn:focus {
     box-shadow: 0 0 0 2px #f44336;
 }
+
+.dashboard-link{
+    text-decoration: none;
+    color: #777777;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;
+    transition: all .3s ease-in-out;
+  }
+  
+  .dashboard-link:hover{
+    color: #fff;
+    border: 1px solid #c0c0c0;
+
+  }

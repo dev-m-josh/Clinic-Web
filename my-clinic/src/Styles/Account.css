@@ -1,0 +1,167 @@
+/* General styles */
+.account-container {
+    width: 100%;
+    min-width: fit-content;
+    font-family: Arial, sans-serif;
+}
+
+.details{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.details h2 {
+    font-size: 24px;
+    color: #333;
+    margin: 0px;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+/* User details section */
+.details p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.details strong {
+    color: #333;
+}
+
+/* Action buttons */
+.action-btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.change-password-button,
+.delete-account-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.change-password-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.change-password-button:hover {
+    background-color: #45a049;
+}
+
+.delete-account-btn, .cancel {
+    background-color: #f44336;
+    color: white;
+}
+
+.delete-account-btn:hover, .cancel:hover {
+    background-color: #e53935;
+}
+
+/* Password change form */
+.password-change-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0px;
+}
+
+.password-change-form h3{
+    margin: 0;
+}
+
+.password-field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.password-field label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.password-field input {
+    padding: 10px;
+    font-size: 16px;
+    width: 90%;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.inputs{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.inputs:focus {
+    border-color: #4CAF50;
+}
+
+.password-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.password-toggle-btn svg {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Form buttons */
+.password-action {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.password-submit-btn,
+.change-password-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.password-submit-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.password-submit-btn:hover {
+    background-color: #45a049;
+}
+
+.password-submit-btn:disabled,
+.change-password-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Error message */
+p[style="color: red"] {
+    font-size: 14px;
+    color: red;
+    margin-top: 10px;
+}
