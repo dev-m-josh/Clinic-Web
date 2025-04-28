@@ -23,9 +23,17 @@ const editUserRoleSchema = joi.object({
       .required()
 });
 
+//APPOINTMENT SCHEMA
+const newAppointmentSchema = joi.object({
+  PatientId: joi.number().integer().required(),
+  AppointmentDate: joi.date().iso().greater('now').required(),
+  Reason: joi.string().min(5).max(255).required(),
+});
+
 
 module.exports = { 
   newUserSchema,
   loginSchema,
   editUserRoleSchema,
+  newAppointmentSchema
 };
