@@ -7,6 +7,7 @@ require("dotenv").config();
 const { config } = require("./config/db_config");
 const { freeRouter } = require("./routes/freeRoutes");
 const { authRouter } = require("./routes/authRoute");
+const { appointRouter } = require("./routes/appointmentRoutes");
 
 async function startServer() {
     const app = express();
@@ -30,6 +31,7 @@ async function startServer() {
         app.use(authRouter);
         app.use(verifyToken);
         app.use("/users", usersRouter);
+        app.use("/appointments", appointRouter)
         app.all('*', undefinedRouteHandler);
         app.use(allErrorsHandler);
 

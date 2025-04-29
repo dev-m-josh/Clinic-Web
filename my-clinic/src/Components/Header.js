@@ -36,7 +36,7 @@ function Header() {
             const data = response.data;
 
             if (data.success) {
-                navigate("/products");
+                navigate("/login");
             };
         } catch (error) {
             console.log("Login error:", error);

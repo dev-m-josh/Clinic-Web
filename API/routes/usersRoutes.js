@@ -1,5 +1,5 @@
 const usersRouter = require("express").Router();
-const { getAllUsers, deactivateUser, updateUserPassword, updateUserRole, getUserProfile, restoreUser } = require("../controllers/usersController");
+const { getAllUsers, deactivateUser, updateUserPassword, updateUserRole, getUserProfile } = require("../controllers/usersController");
 
 usersRouter.get('/', getAllUsers);
 usersRouter.get('/:userId', getUserProfile)
