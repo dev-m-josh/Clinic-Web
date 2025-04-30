@@ -18,7 +18,6 @@ export default function Account() {
     const [isChangePasswordVisible, setIsChangePasswordVisible] = useState(false);
     const navigate = useNavigate();
 
-    // Redirect if user/token is missing
     useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem("myUser"));
         const storedToken = localStorage.getItem("myToken");
@@ -192,4 +191,4 @@ export default function Account() {
             )}
         </div>
     );
-}
+};
