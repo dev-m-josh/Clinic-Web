@@ -25,7 +25,7 @@ async function createAppointment(req, res) {
     request.input('DoctorId', sql.Int, value.DoctorId);
 
     const result = await request.query(`
-      INSERT INTO Appointments (PatientId, AppointmentDate, Reason)
+      INSERT INTO Appointments (PatientId, AppointmentDate, Reason, DoctorId)
       VALUES (@PatientId, @AppointmentDate, @Reason, @DoctorId)
     `);
 

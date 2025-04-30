@@ -18,6 +18,7 @@ export default function CreateAppointment() {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
+  const [patients, setPatients] = useState([]);
 
   // Load user and token from localStorage
   useEffect(() => {
@@ -42,6 +43,8 @@ export default function CreateAppointment() {
       }));
     }
   }, [user]);
+
+  console.log(user)
 
   // Fetch appointments
   useEffect(() => {
@@ -72,6 +75,36 @@ export default function CreateAppointment() {
     };
 
     fetchAppointments();
+  }, [token, user]);
+
+  useEffect(() => {
+    if (!token || !user) return;
+
+    const fetchPatients = async () => {
+      try {
+        setLoading(true);
+        const endpoint = `http://localhost:4500/users/patients?activeUsers=1`;
+        const response = await fetch(endpoint, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) throw new Error(`${response.statusText}`);
+        const data = await response.json();
+        if (!Array.isArray(data)) throw new Error("Unexpected response format");
+        setPatients(data);
+      } catch (err) {
+        console.error("Error fetching appointments:", err);
+        setMessage(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPatients();
   }, [token, user]);
 
   const formatDateTime = (input) => {
@@ -190,13 +223,19 @@ export default function CreateAppointment() {
             <form onSubmit={handleSubmit}>
               <div className="user-details">
                 <label>Patient ID:</label>
-                <input
-                  type="text"
+                <select
                   name="PatientId"
                   value={formData.PatientId}
                   onChange={handleChange}
                   required
-                />
+                >
+                  <option value="">-- Select Patient --</option>
+                  {patients.map((patient) => (
+                    <option key={patient.UserId} value={patient.UserId}>
+                      {patient.FirstName} {patient.LastName}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="user-details">
                 <label>Appointment Date:</label>
@@ -237,7 +276,7 @@ export default function CreateAppointment() {
         </div>
 
         {appointments.length === 0 ? (
-          <div>No appointments available to display</div>
+          <div>You have no appointments yet.</div>
         ) : (
           <table className="users-table">
             <thead>

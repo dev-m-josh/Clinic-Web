@@ -25,6 +25,28 @@ function getAllUsers(req, res) {
     );
 };
 
+//get all users
+function getAllPatients(req, res) {
+  let pool = req.pool;
+  let { activeUsers } = req.query;
+  pool.query(
+      `SELECT *
+      FROM users
+      WHERE isActive = ${activeUsers} AND UserRole = 'Patient'
+      ORDER BY UserId`, (err, result) => {
+          if (err) {
+              res.status(500).json({
+                  success: false,
+                  message: "Internal server error."
+              });
+              console.log("Error occured in query", err);
+          } else {
+              res.json(result.recordset);
+          };
+      }
+  );
+};
+
 //get user profile
 function getUserProfile(req, res) {
   let pool = req.pool;
@@ -325,6 +347,7 @@ function updateUserRole(req, res) {
 
 module.exports = { 
   getAllUsers,
+  getAllPatients,
   addNewUser, 
   deleteUser,
   deactivateUser,

@@ -63,7 +63,8 @@ export default function SignUp() {
 
             const data = response.data;
 
-            localStorage.setItem("myToken", JSON.stringify(data.token));
+            localStorage.setItem("myToken", data.token);
+            console.log(data.token)
 
             const signedUpUser = {
                 UserId: data.UserId,
