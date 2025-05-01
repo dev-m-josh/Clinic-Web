@@ -44,8 +44,6 @@ export default function CreateAppointment() {
     }
   }, [user]);
 
-  console.log(user)
-
   // Fetch appointments
   useEffect(() => {
     if (!token || !user) return;

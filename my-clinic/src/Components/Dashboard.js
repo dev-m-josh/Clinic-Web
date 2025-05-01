@@ -13,7 +13,6 @@ export default function Dashboard() {
       };
     }, [token, user, navigate]);
 
-    console.log(user)
   return (
     <div className='dashboard'>
         <h1>Dashboard</h1>

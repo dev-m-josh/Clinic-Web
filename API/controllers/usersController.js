@@ -68,44 +68,66 @@ function getUserProfile(req, res) {
   );
 };
 
-//sign-up for a new user
 async function addNewUser(req, res) {
-    let pool = req.pool;
-    let addedUser = req.body;
+  let pool = req.pool;
+  let addedUser = req.body;
 
-    const { error, value } = newUserSchema.validate(addedUser, {
-        abortEarly: false
-    });
+  const { error, value } = newUserSchema.validate(addedUser, {
+      abortEarly: false
+  });
 
-    if (error) {
-        console.log(error);
-        return res.status(400).json({ errors: error.details });
-    };
+  if (error) {
+      console.log(error);
+      return res.status(400).json({ errors: error.details });
+  }
 
-    let hashedPassword = await bcrypt.hash(value.UserPassword, 5);
+  try {
+      const hashedPassword = await bcrypt.hash(value.UserPassword, 5);
 
-    let token = await jwt.sign({ addedUser }, "impossibletoguessright");
+      const query = `
+          INSERT INTO users 
+          (FirstName, LastName, Gender, Email, PhoneNumber, UserPassword)
+          OUTPUT INSERTED.*
+          VALUES (@FirstName, @LastName, @Gender, @Email, @PhoneNumber, @UserPassword)`;
 
-    pool.query(
-        `INSERT INTO users (FirstName, LastName, Gender, Email, PhoneNumber, UserPassword)
-    VALUES ('${value.FirstName}', '${value.LastName}', '${value.Gender}', '${value.Email}', '${value.PhoneNumber}', '${hashedPassword}')`, (err, result) =>{
-    if (err) {
-        console.log("Error occured in query.", err.details);
-        res.json({
+      const request = pool.request();
+      request.input('FirstName', value.FirstName);
+      request.input('LastName', value.LastName);
+      request.input('Gender', value.Gender);
+      request.input('Email', value.Email);
+      request.input('PhoneNumber', value.PhoneNumber);
+      request.input('UserPassword', hashedPassword);
+
+      request.query(query, async (err, result) => {
+          if (err) {
+              console.error("SQL Error:", err);
+              return res.status(500).json({ success: false, message: err.message });
+          }
+
+          const fullUser = result.recordset[0];
+          delete fullUser.UserPassword;
+
+          const token = jwt.sign(
+              { UserId: fullUser.UserId, UserRole: fullUser.UserRole },
+              "impossibletoguessright"
+          );
+
+          res.status(201).json({
+              success: true,
+              message: "User added successfully",
+              addedUser: fullUser,
+              token
+          });
+      });
+  } catch (e) {
+      console.error("Unexpected error:", e);
+      res.status(500).json({
           success: false,
-          message: err.message
-        });
-    } else {
-        res.json({
-            success: true,
-            message: "User added successfully",
-            addedUser,
-            token
-        });
-    };
-    }
-  );
-};
+          message: "Internal server error"
+      });
+  }
+}
+
 
 //delete a user compeletely
 function deleteUser(req, res) {

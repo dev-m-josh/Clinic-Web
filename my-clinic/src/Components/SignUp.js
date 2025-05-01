@@ -64,20 +64,20 @@ export default function SignUp() {
             const data = response.data;
 
             localStorage.setItem("myToken", data.token);
-            console.log(data.token)
 
             const signedUpUser = {
-                UserId: data.UserId,
-                FirstName: data.FirstName,
-                LastName: data.LastName,
-                Gender: data.Gender,
-                Email: data.Email,
-                PhoneNumber: data.PhoneNumber,
-                UserRole: data.UserRole,
-                isActive: data.isActive
+                UserId: data.addedUser.UserId,
+                FirstName: data.addedUser.FirstName,
+                LastName: data.addedUser.LastName,
+                Gender: data.addedUser.Gender,
+                Email: data.addedUser.Email,
+                PhoneNumber: data.addedUser.PhoneNumber,
+                UserRole: data.addedUser.UserRole,
+                isActive: data.addedUser.isActive
             };
 
             localStorage.setItem("myUser", JSON.stringify(signedUpUser));
+            const storedUser = JSON.parse(localStorage.getItem("myUser"));
 
             navigate("/");
             
