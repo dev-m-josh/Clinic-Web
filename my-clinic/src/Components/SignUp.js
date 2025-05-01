@@ -77,7 +77,6 @@ export default function SignUp() {
             };
 
             localStorage.setItem("myUser", JSON.stringify(signedUpUser));
-            const storedUser = JSON.parse(localStorage.getItem("myUser"));
 
             navigate("/");
             
