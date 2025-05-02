@@ -293,15 +293,15 @@ export default function CreateAppointment() {
             <tbody>
               {appointments.map((appointment, index) => (
                 <tr key={appointment.AppointmentId}>
-                  <td>{index + 1}</td>
-                  <td>{appointment.PatientFirstName}</td>
-                  <td>{appointment.PatientLastName}</td>
-                  <td>{appointment.DoctorFirstName}</td>
-                  <td>{appointment.DoctorLastName}</td>
-                  <td>{new Date(appointment.AppointmentDate).toLocaleString()}</td>
-                  <td>{appointment.Reason}</td>
-                  <td>{appointment.isCompleted ? "Completed" : "Pending"}</td>
-                  <td className="options">
+                  <td data-label="#"> {index + 1} </td>
+                  <td data-label="Patient FirstName">{appointment.PatientFirstName}</td>
+                  <td data-label="Patient LastName">{appointment.PatientLastName}</td>
+                  <td data-label="Doctor FirstName">{appointment.DoctorFirstName}</td>
+                  <td data-label="Doctor LastName">{appointment.DoctorLastName}</td>
+                  <td data-label="Appointment Date">{new Date(appointment.AppointmentDate).toLocaleString()}</td>
+                  <td data-label="Reason">{appointment.Reason}</td>
+                  <td data-label="isCompleted">{appointment.isCompleted ? "Completed" : "Pending"}</td>
+                  <td className="options" data-label="Actions">
                     <select
                       defaultValue=""
                       onChange={(e) => {
@@ -321,6 +321,7 @@ export default function CreateAppointment() {
                       <option value="delete">Delete</option>
                     </select>
                   </td>
+
                 </tr>
               ))}
             </tbody>

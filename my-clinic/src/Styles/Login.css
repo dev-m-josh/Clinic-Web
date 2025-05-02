@@ -276,34 +276,161 @@
     width: 140px;
   }
   
-  .pagination {
-    display: flex;
-    justify-content: center;
+
+@media screen and (max-width: 768px) {
+.login-form {
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.login-form h2 {
+  text-align: start;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-size: 1.6rem;
+}
+
+.user-details {
+  margin-bottom: 15px;
+}
+
+.user-details label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.user-details div {
+  position: relative;
+}
+
+.password-visibility {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #888;
+}
+
+.navigate {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.navigate button {
+  background: none;
+  border: none;
+  color: #3498db;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.95rem;
+  margin-left: 5px;
+}
+
+.submit-btn {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.submit-btn button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submit-btn button:hover {
+  background-color: #2980b9;
+}
+
+p[style*="color: red"] {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: -10px;
+}
+}
+
+@media screen and (max-width: 768px) {
+  .modal-content {
+      width: 95%;
+      padding: 15px;
+  }
+  .users-header{
     align-items: center;
-    gap: 15px;
-    margin-top: 30px;
+    justify-content: space-between;
+    margin-top: 20px;
   }
-  
-  .pagination-button {
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: 600;
+
+  .users-header h2{
+    margin: 0;
+  }
+
+}
+
+
+/* 📱 Mobile Styles */
+@media (max-width: 600px) {
+  .users{
+    padding: 0;
+  }
+
+  .users-table,
+  .users-table thead,
+  .users-table tbody,
+  .users-table th,
+  .users-table td,
+  .users-table tr {
+    display: block;
+    width: 98%;
+  }
+
+  .users-table thead {
+    display: none;
+  }
+
+  .users-table tr {
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #fff;
+  }
+
+  .users-table td {
+    display: flex;
+    justify-content: start;
     border: none;
-    border-radius: 5px;
-    background-color: #3498db;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .pagination-button:disabled {
-    background-color: #95a5a6;
-    cursor: not-allowed;
-  }
-  
-  .pagination-button:hover:not(:disabled) {
-    background-color: #2980b9;
+    border-bottom: 1px solid #eee;
   }
 
+  .users-table td:last-child {
+    border-bottom: none;
+  }
 
-  
+  .users-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    flex-basis: 50%;
+    text-align: left;
+    color: #555;
+  }
+
+  .options select {
+    font-size: 14px;
+    width: 100%;
+  }
+}

@@ -104,3 +104,30 @@
     border: 1px solid #c0c0c0;
 
   }
+
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+  .clinic-header {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .clinic-logo {
+      margin-bottom: 10px;
+  }
+
+  .clinic-nav {
+      align-items: flex-end;
+      justify-content: flex-end;
+      width: 100%;
+      gap: 10px;
+  }
+
+  .clinic-nav a,
+  .login-btn,
+  .logOut-btn {
+      width: fit-content;
+      text-align: left;
+  }
+}

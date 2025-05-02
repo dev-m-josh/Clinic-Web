@@ -165,3 +165,34 @@ p[style="color: red"] {
     color: red;
     margin-top: 10px;
 }
+
+
+/* 📱 Mobile Styles */
+@media (max-width: 600px) {
+    .account-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .action-btns,
+    .password-action {
+        gap: 10px;
+        justify-content: space-between;
+    }
+
+    .delete-account-btn,
+    .change-password-button,
+    .password-submit-btn,
+    .cancel {
+        width: fit-content;
+        font-size: 16px;
+    }
+
+    .inputs input {
+        font-size: 16px;
+    }
+
+    .password-toggle-btn {
+        font-size: 18px;
+    }
+}
